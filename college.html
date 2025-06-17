@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      background-color:#ffdd80;
+      background-image: url("logo.jpeg");
+      position:no change;
+      backgroung-image-repeat:no-repeat;
+      background-size:cover;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      padding: 20px;
+      align-items:center;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      width: 300px;
+    }
+    .login-container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .login-container button:hover {
+      background-color: #0056b3;
+    }
+    .details-container {
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    .details-container h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Login</h1>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="validateLogin()">Login</button>
+    <div id="message" style="color: red; text-align: center; margin-top: 10px;"></div>
+  </div>
+
+  <div id="details-container" class="details-container" style="display: none;">
+    <h2>Account Details</h2>
+    <div id="details"></div>
+  </div>
+
+  <script>
+    // Account details
+    const accounts = {
+      "narayana swamy": {
+        password: "dugulam sai",
+        details: `
+          <strong>Last Update:</strong> 21/4/2004<br>
+          <strong>Blood Test Results:</strong><br>
+          Diabetes: above 100 less than 105<br>
+          BP: normal<br><br>
+          7/5/2004<br>
+          <strong>Blood Test Report:</strong><br>
+          Diabetes: normal<br>
+          BP: normal
+        `
+      },
+      "rama krishnappa": {
+        password: "gouthm",
+        details: `
+          <strong>3/8/2008</strong><br>
+          <strong>Scanning Reports:</strong><br>
+          MRI Scanning Reports<br>
+          Part: Abdomen-liver: Normal with Dotarem<br>
+          Clinical Information: multiplane imaging was acquired.<br><br>
+          <strong>Findings:</strong><br>
+          * The liver has a normal shape and size.<br>
+          * The portal and hepatic veins are normal.<br>
+          * No free fluid or gas is seen.<br>
+        `
+      },
+      "nagi reddy": {
+        password: "bhagath",
+        details: `
+          <strong>29/9/2008</strong><br>
+          <strong>Migraine Headache Reports:</strong><br>
+          Total population: N = 103<br>
+          Number of individuals with at least one prodromal symptom: 69<br>
+          <strong>Age Breakdown:</strong><br>
+          &lt;6: 3%<br>
+          6–12: 40%<br>
+          &gt;12: 57%
+        `
+      },
+      "marthi": {
+        password: "laddu",
+        details: `
+          <strong>27/8/2007</strong><br>
+          <strong>Heart Attack Test:</strong><br>
+          Patient Name: John Stevens<br>
+          Date of Birth: March 15, 1965<br>
+          <strong>Tests:</strong><br>
+          1. ECG Findings: ST-segment elevation present.<br>
+          2. Troponin Levels: Elevated.<br>
+        `
+      },
+      "hanumanthu": {
+        password: "charan",
+        details: `
+          <strong>Spirometry Report:</strong><br>
+          COPD Risk: Very High<br>
+          Pre-Bronchodilator Results:<br>
+          FVC (Predicted): 3.119 L, Actual: 1.530 L (49%)<br>
+          FEV1 (Predicted): 2.364 L, Actual: 1.320 L (56%)<br>
+        `
+      }
+    };
+
+    // Validate login and display account details
+    function validateLogin() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const message = document.getElementById("message");
+      const detailsContainer = document.getElementById("details-container");
+      const details = document.getElementById("details");
+
+      if (accounts[username] && accounts[username].password === password) {
+        message.textContent = "";
+        details.innerHTML = accounts[username].details;
+        detailsContainer.style.display = "block";
+      } else {
+        message.textContent = "Invalid username or password!";
+        detailsContainer.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
